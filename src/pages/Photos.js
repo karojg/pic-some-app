@@ -10,7 +10,6 @@ function Photos() {
     const data = allPhotos.map((img, index) => (
       <Image key={img.id} img={img} className={getClass(index)} />
     ))
-    console.log('data', data)
 
     return (
         <main className="photos">
