@@ -3,7 +3,7 @@ import { Context }  from '../context/Context'
 import PropTypes from 'prop-types';
 
 function Image({className, img}) {
-  const { toggleFavorite, addToCart } = useContext(Context)
+  const { toggleFavorite, addToCart, cartItems } = useContext(Context)
   const [hovered, setHovered] = useState(false)
 
   const heartIcon = hovered &&
@@ -16,9 +16,16 @@ function Image({className, img}) {
         onClick={() => toggleFavorite(img.id)}>
     </i>
 
-  const cartIcon = hovered &&
-    <i className="ri-add-circle-line cart"
-      onClick={() => addToCart(img)}></i>
+  const iconInCart = () => {
+    if (cartItems.find(item => item.id === img.id)) {
+      return <i className="ri-shopping-cart-fill cart"></i>
+    }
+    else if (hovered) {
+      return <i className="ri-add-circle-line cart"
+              onClick={() => addToCart(img)}>
+            </i>
+    }
+  }
 
   return (
       <div
@@ -28,7 +35,7 @@ function Image({className, img}) {
       >
         <img src={img.url} alt={''} className="image-grid"/>
         { img.isFavorite ? heartIconAlways : heartIcon}
-        {cartIcon}
+        {iconInCart()}
       </div>
   )
 }

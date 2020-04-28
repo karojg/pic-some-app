@@ -32,7 +32,7 @@ const ContextProvider = ({children}) => {
   console.log("cartItems", cartItems)
 
   return (
-    <Context.Provider value={{allPhotos, toggleFavorite, addToCart}}>
+    <Context.Provider value={{allPhotos, toggleFavorite, cartItems, addToCart}}>
       {children}
     </Context.Provider>
   )
