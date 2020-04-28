@@ -3,7 +3,7 @@ import { Context }  from '../context/Context'
 import PropTypes from 'prop-types';
 
 function Image({className, img}) {
-  const { toggleFavorite } = useContext(Context)
+  const { toggleFavorite, addToCart } = useContext(Context)
   const [hovered, setHovered] = useState(false)
 
   const heartIcon = hovered &&
@@ -12,11 +12,13 @@ function Image({className, img}) {
     </i>
 
   const heartIconAlways =
-  <i className={"ri-heart-fill favorite"}
-      onClick={() => toggleFavorite(img.id)}>
-  </i>
+    <i className={"ri-heart-fill favorite"}
+        onClick={() => toggleFavorite(img.id)}>
+    </i>
 
-  const cartIcon = hovered && <i className="ri-add-circle-line cart"></i>
+  const cartIcon = hovered &&
+    <i className="ri-add-circle-line cart"
+      onClick={() => addToCart(img)}></i>
 
   return (
       <div
