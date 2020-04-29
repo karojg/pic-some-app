@@ -25,14 +25,18 @@ const Cart = () => {
     }
 
     return (
-        <main className='cart-page'>
-            <h1>Check out</h1>
-            {cartItemElements}
-            <p className='total-cost'> Total: {totalCostDisplay} </p>
-            <div className='order-button'>
+      <main className='cart-page'>
+          <h1>Check out</h1>
+          {cartItemElements}
+          <p className='total-cost'> Total: {totalCostDisplay} </p>
+          {
+            cartItems.length > 0 ?
+              <div className='order-button'>
                 <button onClick={orderPlaced}>{cartText}</button>
-            </div>
-        </main>
+              </div> :
+              <p>You do not have items in your cart.</p>
+          }
+      </main>
     )
 }
 
