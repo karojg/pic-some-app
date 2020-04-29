@@ -10,7 +10,7 @@ const Cart = () => {
     const totalCostDisplay = totalCost.toLocaleString('en-US', {style: 'currency', currency: 'USD'})
 
     const cartItemElements = cartItems.map(item => (
-        <CartItem key={item.id} item={item} />
+      <CartItem key={item.id} item={item} />
     ))
 
     const orderPlaced = () => {
@@ -26,16 +26,16 @@ const Cart = () => {
 
     return (
       <main className='cart-page'>
-          <h1>Check out</h1>
-          {cartItemElements}
-          <p className='total-cost'> Total: {totalCostDisplay} </p>
-          {
-            cartItems.length > 0 ?
-              <div className='order-button'>
-                <button onClick={orderPlaced}>{cartText}</button>
-              </div> :
-              <p>You do not have items in your cart.</p>
-          }
+        <h1>Check out</h1>
+        {cartItemElements}
+        <p className='total-cost'> Total: {totalCostDisplay} </p>
+        {
+          cartItems.length > 0 ?
+          <div className='order-button'>
+            <button onClick={orderPlaced}>{cartText}</button>
+          </div> :
+          <p>You do not have items in your cart.</p>
+        }
       </main>
     )
 }

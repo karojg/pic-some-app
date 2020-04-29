@@ -1,10 +1,10 @@
-import React, {useContext} from "react"
+import React, {useContext} from 'react'
 import Image from '../components/Image'
-import { getClass } from "../utils"
+import { getClass } from '../utils'
 
 import { Context }  from '../context/Context'
 
-function Photos() {
+const Photos = () => {
     const { allPhotos } = useContext(Context)
 
     const data = allPhotos.map((img, index) => (
@@ -12,9 +12,9 @@ function Photos() {
     ))
 
     return (
-        <main className="photos">
-          {data}
-        </main>
+      <main className='photos'>
+        {data}
+      </main>
     )
 }
 
