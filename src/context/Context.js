@@ -4,15 +4,18 @@ const Context = React.createContext();
 
 const ContextProvider = ({children}) => {
 
-  const [allPhotos, setAllPhotos] = useState([])
-  const [cartItems, setCartItems] = useState([])
+  const cartItemsLocalStorage = JSON.parse(localStorage.getItem('cartItemsStored'))
+  const favoriteItemsLocalStorage = JSON.parse(localStorage.getItem('favoriteItemsStored'))
+  const [initialDat, setInitialData] = useState(favoriteItemsLocalStorage || [])
+  const [allPhotos, setAllPhotos] = useState(favoriteItemsLocalStorage || initialDat)
+  const [cartItems, setCartItems] = useState(cartItemsLocalStorage || [])
 
   const url = 'https://raw.githubusercontent.com/bobziroll/scrimba-react-bootcamp-images/master/images.json'
 
   useEffect(() => {
     fetch(url)
       .then(res => res.json())
-      .then(data => setAllPhotos(data))
+      .then(data => setInitialData(data))
   }, [])
 
   const toggleFavorite = id => {
@@ -32,6 +35,11 @@ const ContextProvider = ({children}) => {
   }
 
   const emptyCart = () => setCartItems([])
+
+  useEffect(() => {
+    localStorage.setItem('cartItemsStored', JSON.stringify(cartItems))
+    localStorage.setItem('favoriteItemsStored', JSON.stringify(allPhotos))
+  }, [cartItems, allPhotos])
 
   return (
     <Context.Provider value={
